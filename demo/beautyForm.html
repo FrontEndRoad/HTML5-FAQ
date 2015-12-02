@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<!-- 设置页面缩放 -->
+	<!-- 方法一：直接设置meta-viewort属性 -->
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+	<title>H5表单元素及美化</title>
+	<style>
+	* { -webkit-tap-highlight-color: rgba(0,0,0,0); }
+	body { margin: 0; font-size: 16px; color: #333; font-family: Microsoft Yahei; }
+	p { margin: 10px 0; }
+	input { font-family: Microsoft Yahei; vertical-align: middle; }
+	input,select { -webkit-appearance: none; appearance: none; }
+	input[type=radio]::-ms-clear,input[type=tel]::-ms-clear,input[type=number]::-ms-clear { display: none; }
+	input[type=radio]::-ms-check, input[type=checkbox]::-ms-check { display: none; }
+	select::-ms-expand { display: none; }
+	a,button,input,textarea { -webkit-tap-highlight-color: rgba(0,0,0,0); -webkit-user-modify: read-write-plaintext-only; }
+	::-webkit-input-placeholder { color: #999; }
+	:-moz-placeholder { color: #999; }
+	::-moz-placeholder { color: #999; }
+	::-ms-input-placeholder { color: #999; }
+	input:focus::-webkit-placeholder { color: #999; }
+
+	.wrap { width: 90%; margin: 20px auto 0; }
+		.frm {}
+		.frm p {}
+			.ipt { width: 96%; height: 26px; border: 1px solid #aaa; }
+
+			.rad,.chk { width: 18px; height: 18px; position: relative; background: #fafafa; border: 1px solid #bbb; box-shadow: inset 0 0 0 10px #158EC6; }
+			.rad:after,.chk:after { position: absolute; display: none; z-index: 3; color: #eee; }
+			
+			.rad { border-radius: 100%; background: #fafafa; }
+			.rad:after { width: 6px; height: 6px; background: #fff; border-radius: 100%; content: ''; left: 5px; top: 5px; }
+			.rad:checked:after { display: block; }
+
+			.chk { border-radius: 3px; }
+			.chk:after { content: "\2713"; font-size: 12px; left: 4px; top: -2px; }
+			.chk:checked:after { display: block; }
+			
+			.selWrap { position: relative; }
+			.selWrap:after { position: absolute; content: ''; display: block; width: 0; height: 0; border-width: 8px; border-style: solid dashed dashed; border-color: #158EC6 transparent transparent; right: 5px; top: 8px; z-index: 3; }
+				.sel { width: 96%; height: 32px; }
+
+			
+
+	</style>
+</head>
+<body>
+	<div class="wrap">
+		<div class="frm">
+			<p><input type="text" placeholder="文本" class="ipt" /></p>
+			<p><input type="number" placeholder="数值" class="ipt"  /></p>
+			<p><input type="tel" placeholder="手机号" class="ipt"  /></p>
+			<p><input type="mail" placeholder="邮箱" class="ipt"  /></p>
+			<p>
+				<input type="radio" name="rad" id="" class="rad" />选项一
+				<input type="radio" name="rad" id="" class="rad" />选项二
+			</p>
+			<p>
+				<input type="checkbox" name="chk" id="" class="chk" />选项一
+				<input type="checkbox" name="chk" id="" class="chk" />选项二
+				<input type="checkbox" name="chk" id="" class="chk" />选项三
+			</p>
+			<p>
+				<span class="selWrap">
+					<select name="" id="" class="sel">
+						<option value="0">-请选择职业-</option>
+						<option value="1">前端攻城狮</option>
+						<option value="2">程序猿</option>
+						<option value="3">美工</option>
+					</select>
+				</span>
+			</p>
+		</div>
+
+	</div>	
+
+
+</body>
+</html>

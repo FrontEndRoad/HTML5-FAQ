@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<!-- 设置页面缩放 -->
+	<!-- 方法一：直接设置meta-viewort属性 -->
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+	<title>position之殇</title>
+	<style>
+		body { margin: 0; }
+		p,h3 { margin: 0; margin-top: 10px; }
+
+		.fixed { position: fixed; }
+		.pa { position: absolute; }
+
+		.wrap { width: 100%; height: 100%; }
+		.top,.bot { position: fixed; }
+		
+
+		.page { position: relative; }
+		.wrd { font-size: 20px; padding: 10px 0; }
+		.w1 { top: 0; }
+		.w2 { top: 30px; }
+		.w3 { top: 60px; }
+
+
+
+	</style>
+</head>
+<body>
+	<h3>实例一：fixed定位，触发软件键盘后错位问题</h3>
+	<div class="wrap">
+		<div class="top fixed"></div>
+		<div class="cnt">
+			<p>地基地奔苦顶替劳而无功</p>
+		</div>
+		<div class="bot fixed"></div>
+	</div>
+	<hr />
+	<h3>实例二：触发系统软键盘，absolute定位元素错乱</h3>
+	<div class="wrap">
+		<div class="page">
+			<p class="wrd w1 pa">绝对定位元素一</p>
+			<p class="wrd w2 pa">绝对定位元素二</p>
+			<p class="wrd w3 pa">绝对定位元素三</p>
+		</div>
+	</div>
+	<!-- 以上为模拟数据 -->
+
+	
+	<!-- 解决方案 -->
+	<script>
+	var ua = navigator.userAgent.indexOf('Android');
+	if(ua>-1){
+		$('.ipt').on('focus', function(){
+			//$('.wrd').css({ 'visibility': 'hidden' })
+			$('.wrd').css({ 'position': 'static' })
+		}).on('blur', function(){
+			//$('.wrd').css({ 'visibility': 'visible' })
+			$('.wrd').css({ 'position': 'absolute' })
+		})
+	}
+	</script>
+</body>
+</html>
