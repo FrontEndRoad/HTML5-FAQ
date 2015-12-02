@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<!-- 设置页面缩放 -->
+	<!-- 方法一：直接设置meta-viewort属性 -->
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+	<title>横竖屏判断</title>
+	<style>
+		html,body { height: 100%; overflow: hidden; }
+		body { margin: 0; font-family: Microfost Yahei; }
+		.wrap { height: 100%; text-align: center; line-height: 200px; background: #ace; }
+		.orient { width: 100%; height: 100%; line-height: 400px; background: rgba(0,0,0,.6); text-align: center; color: #fff; font-size: 24px; position: absolute; left: 0; top: 0; z-index: 9; display: none; }
+	</style>
+</head>
+<body>
+<div class="wrap">移动端横竖屏判断</div>
+<div class="orient" id="orient">请竖屏浏览</div>
+
+<script>
+	function orientInit(){
+		var orientChk = document.documentElement.clientWidth > document.documentElement.clientHeight?'landscape': 'portrait';
+		var orient = document.getElementById('orient');
+		if(orientChk =='landscape'){
+			//这里是横屏下需要执行的事件
+			orient.style.display = 'block';
+		}else{
+			//这里是竖屏下需要执行的事件
+			orient.style.display = 'none';
+		}
+	}
+
+	orientInit();
+	window.addEventListener('onorientationchange' in window?'orientationchange':'resize', function(){
+		setTimeout(orientInit, 100);
+	},false)
+
+</script>
+</body>
+</html>

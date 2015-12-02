@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<!-- 设置页面缩放 -->
+	<!-- 方法一：直接设置meta-viewort属性 -->
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+	<title>横竖屏判断</title>
+	<style>
+		html,body { height: 100%; overflow: hidden; }
+		body { margin: 0; font-family: Microfost Yahei; }
+		.wrap { height: 100%; text-align: center; line-height: 200px; background: #ace; }
+	</style>
+</head>
+<body>
+<div class="wrap">据说，拿起手机摇一摇，中奖机率更大</div>
+
+<script>
+//开关
+var flags = false;
+yaoInit();
+
+// 首先在页面上要监听运动传感事件 
+function yaoInit(){
+	if(window.DeviceMotionEvent) { 	
+	　　　　// 移动浏览器支持运动传感事件
+		if(!flags){
+			flags = true;
+		　　　//window.addEventListener('devicemotion', deviceMotionHandler, true)
+			//模拟点击测试
+		　　　window.addEventListener('touchstart', yaoAfterAjax, true)
+		}
+	}
+}
+
+// 首先，定义一个摇动的阀值
+var SHAKE_THRESHOLD = 1000;
+// 定义一个变量保存上次更新的时间
+var last_update = 0;
+// 紧接着定义x、y、z记录三个轴的数据以及上一次出发的时间
+var x; //x轴横向贯穿手机屏幕或者笔记本键盘
+var y;//y轴纵向贯穿手机屏幕或笔记本键盘
+var z;//z轴垂直于手机屏幕或笔记本键盘）
+var last_x;
+var last_y;
+var last_z;
+// 为了增加这个例子的一点无聊趣味性，增加一个计数器
+var count = 0;
+function deviceMotionHandler(eventData) {
+	// 获取含重力的加速度
+	var acceleration = eventData.accelerationIncludingGravity; 
+	// 获取当前时间
+	var curTime = new Date().getTime(); 
+	var diffTime = curTime -last_update;
+	// 固定时间段
+	if (diffTime > 50) {
+		last_update = curTime; 
+		x = acceleration.x; 
+		y = acceleration.y; 
+		z = acceleration.z; 
+		var speed = Math.abs(x + y + z - last_x - last_y - last_z) / diffTime * 10000; 
+		if (speed > SHAKE_THRESHOLD) { 
+　　　　　　		//在此处可以实现摇一摇之后所要进行的数据逻辑操作
+			yaoAfterAjax();
+		}
+		last_x = x; 
+		last_y = y; 
+		last_z = z; 
+	} 
+}
+
+
+function yaoAfterAjax(){
+	alert('哎呀玛，轻点，脑袋都要摇掉了……');
+	flags = false;
+}
+</script>
+</body>
+</html>
