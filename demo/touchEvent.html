@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<!-- 设置页面缩放 -->
+	<!-- 方法一：直接设置meta-viewort属性 -->
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+	<title>移动端touch事件解析</title>
+</head>
+<body>
+	<div class="wrap">
+		<button class="btn" id="btn">点击我</button>
+		<div class="result" id="result"></div>
+	</div>
+	
+	<script>
+		var st = new Date().getTime();
+		var btn = document.getElementById('btn');
+		var res = document.getElementById('result');
+
+		btn.addEventListener('touchstart', function(){
+			var tt = new Date().getTime();
+			res.innerHTML += '<hr/><br/>' + 'touchstart:'+(tt-st);
+		}, false)
+
+		btn.addEventListener('touchmove', function(){
+			var tt = new Date().getTime();
+			res.innerHTML += '<br/>' + 'touchmove:'+(tt-st);
+		}, false)
+
+		btn.addEventListener('touchend', function(){
+			var tt = new Date().getTime();
+			res.innerHTML += '<br/>' + 'touchend:'+(tt-st);
+		}, false)
+
+		btn.addEventListener('touchcancel', function(){
+			var tt = new Date().getTime();
+			res.innerHTML += '<br/>' + 'touchcancel:'+(tt-st);
+		}, false)
+
+		btn.addEventListener('click', function(){
+			var tt = new Date().getTime();
+			res.innerHTML += '<br/>' + 'click:'+(tt-st);
+		}, false)
+
+	</script>
+</body>
+</html>
