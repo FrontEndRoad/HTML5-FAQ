@@ -5,6 +5,12 @@
 ``` Javascript
 //一、HTML页面结构
 <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+// width
+// height
+// initial-scale
+// minimum-scale
+// maximum-scale
+// user-scalable
 
 //二、JS动态判断
 var phoneWidth =  parseInt(window.screen.width);
@@ -443,6 +449,14 @@ body { -webkit-text-size-adjust:100%!important; }
 }
 ```
 
+- base64位编码图片
+```
+//对于一些小图标，可以使用base64位编码，以减少网络请求。但不建议大图使用，比较耗费CPU。小图标优势在于：
+//1.减少HTTP请求；
+//2.避免文件跨域；
+//3.修改及时生效；
+``` 
+
 - 开启硬件加速
 ``` CSS
 //目前，像Chrome/Filefox/Safari/IE9+以及最新版本Opera都支持硬件加速，当检测到某个DOM元素应用了某些CSS规则时就会自动开启，从而解决页面闪白，保证动画流畅。
@@ -542,6 +556,36 @@ webkit-playsinline="true"
 -->
 <video x-webkit-airplay="true" webkit-playsinline="true" preload="auto" autoplay src="http://"></video>
 ```
+
+- JS判断设备
+```
+function deviceType(){
+	var ua = navigator.userAgent;
+	var agent = ["Android", "iPhone", "SymbianOS", "Windows Phone", "iPad", "iPod"];	
+	for(var i=0; i<len,len = agent.length; i++){
+		if(ua.indexOf(agent[i])>0){			
+			break;
+		}
+	}
+}
+deviceType();
+window.addEventListener('resize', function(){
+	deviceType();
+})
+```
+
+- JS判断微信浏览器
+```
+function isWeixin(){
+	var ua = navigator.userAgent.toLowerCase();
+	if(ua.match(/MicroMessenger/i)=='micromessenger'){
+		return true;
+	}else{
+		return false;
+	}
+}
+```
+
 
 ####常用的移动端框架
 - zepto.js
