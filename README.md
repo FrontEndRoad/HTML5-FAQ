@@ -1,4 +1,4 @@
-###H5项目常见问题汇总及注意事项
+###H5项目问题汇总及注意事项
 
 ####Meta基础知识： 
 - H5页面窗口自动调整到设备宽度，并禁止用户缩放页面
@@ -156,7 +156,7 @@ zepto的touch模块，tap事件也是为了解决在click的延迟问题
 - 触摸事件的响应顺序
 ```
 ontouchstart  > ontouchmove  > ontouchend > onclick
-解决300ms延迟的问题，也可以通过绑定ontouchstart事件，加快对事件的响应
+//解决300ms延迟的问题，也可以通过绑定ontouchstart事件，加快对事件的响应
 ``` 
 
 - Rentina显示屏原理及设计方案
@@ -205,6 +205,7 @@ a,button,input,textarea{
 <meta name="msapplication-tap-highlight" content="no">
 ```
 
+
 - 美化表单元素
 ``` CSS
 //一、使用appearance改变webkit浏览器的默认外观
@@ -222,7 +223,11 @@ input[type=checkbox]::-ms-check { display:none; }
 input[type=text]::-ms-clear,
 input[type=tel]::-ms-clear,
 input[type=number]::-ms-clear { display:none; }
+```
 
+- 去掉webkit的滚动条
+```
+element::-webkit-scrollbar { display: none; }
 ```
 
 - 改变输入框placeholder的颜色值
@@ -246,12 +251,12 @@ textarea标签都可以换行~
 
 - 禁止ios 长按时不触发系统的菜单，禁止ios&android长按时下载图片
 ``` CSS
-.css { -webkit-touch-callout: none }
+a,img { -webkit-touch-callout: none }    //禁止长按链接与图片弹出菜单
 ```
 
 - 禁止ios和android用户选中文字
 ``` CSS
-.css{-webkit-user-select:none}
+html,body {-webkit-user-select:none; user-select: none; }
 ```
 
 - 打电话发短信写邮件怎么实现
@@ -367,9 +372,34 @@ document.addEventListener("WeixinJSBridgeReady", function () {
 //2.audio元素没有设置controls时，在IOS及Android会占据空间大小，而在PC端Chrome是不会占据任何空间
 ```
 
-- 摇一摇功能
+- 重力感应事件
 ```
-运用HTML5的deviceMotion，说见案例yao.js
+// 运用HTML5的deviceMotion，调用重力感应事件
+if(window.DeviceMotionEvent){
+	document.addEventListener('devicemotion', deviceMotionHandler, false)
+}	
+
+var speed = 30;
+var x = y = z = lastX = lastY = lastZ = 0;
+function deviceMotionHandler(eventData){
+	var acceleration = event.accelerationIncludingGravity;
+	x = acceleration.x;
+	y = acceleration.y; 
+	z = acceleration.z;
+	if(Math.abs(x-lastX)>speed || Math.abs(y-lastY)>speed || Math.abs(z-lastZ)>speed ){
+		//这里是摇动后要执行的方法 
+		yaoAfter();
+	}
+	lastX = x;
+	lastY = y;
+	lastZ = z;
+}
+
+function yaoAfter(){
+	//do something
+}
+
+//说明：说见案例摇一摇效果中yao.js
 ```
 
 - 手机拍照和上传图片
