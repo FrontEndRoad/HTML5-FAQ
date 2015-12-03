@@ -1,16 +1,16 @@
-###H5项目问题汇总及注意事项
+###H5项目常见问题及注意事项
 
 ####Meta基础知识： 
 - H5页面窗口自动调整到设备宽度，并禁止用户缩放页面
 ``` Javascript
 //一、HTML页面结构
 <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
-// width
-// height
-// initial-scale
-// minimum-scale
-// maximum-scale
-// user-scalable
+// width    设置viewport宽度，为一个正整数，或字符串‘device-width’
+// height   设置viewport高度，一般设置了宽度，会自动解析出高度，可以不用设置
+// initial-scale    默认缩放比例，为一个数字，可以带小数
+// minimum-scale    允许用户最小缩放比例，为一个数字，可以带小数
+// maximum-scale    允许用户最大缩放比例，为一个数字，可以带小数
+// user-scalable    是否允许手动缩放
 
 //二、JS动态判断
 var phoneWidth =  parseInt(window.screen.width);
@@ -108,14 +108,14 @@ body { font-family: Microsoft Yahei,SimSun,Helvetica; }
 ```
 
 - 移动端字体单位font-size选择px还是rem
-``` CSS
-/*如需适配多种移动设备，建议使用rem。以下为参考值：*/
-
-//10*16 = 62.5%
-html { font-size: 62.5%; }   
+```
+// 如需适配多种移动设备，建议使用rem。以下为参考值：
+html { font-size: 62.5%; }   //10*16 = 62.5%
 //设置12px字体   这里注意在rem前要加上对应的px值，解决不支持rem的浏览器的兼容问题，做到优雅降级
 body { font-size:12px; font-size:1.2rem; }     
 ```
+
+
 
 - 移动端touch事件（区分webkit和winphone）
 ```
@@ -585,6 +585,13 @@ function isWeixin(){
 	}
 }
 ```
+
+####渲染优化
+```
+//1.禁止使用iframe（阻塞父文档onload事件）
+//2.禁止使用gif图片实现loading效果（降低CPU消耗，提升渲染性能）
+```
+
 
 
 ####常用的移动端框架
