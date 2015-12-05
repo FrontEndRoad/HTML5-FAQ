@@ -235,14 +235,25 @@ body { font-size:12px; font-size:1.2rem; }
 ```
 
 
-- 去掉webkit的滚动条
+- 超实用的CSS样式
 ```
-element::-webkit-scrollbar { display: none; }
-```
+//去掉webkit的滚动条——display: none;
+//其他参数
+::-webkit-scrollba //滚动条整体部分
+::-webkit-scrollbar-thumb   //滚动条内的小方块
+::-webkit-scrollbar-track   //滚动条轨道
+::-webkit-scrollbar-button  //滚动条轨道两端按钮
+::-webkit-scrollbar-track-piece  //滚动条中间部分，内置轨道
+::-webkit-scrollbar-corner       //边角，两个滚动条交汇处
+::-webkit-resizer            //两个滚动条的交汇处上用于通过拖动调整元素大小的小控件
 
+// 禁止长按链接与图片弹出菜单
+a,img { -webkit-touch-callout: none }    
 
-- 改变输入框placeholder的颜色值
-```
+// 禁止ios和android用户选中文字
+html,body {-webkit-user-select:none; user-select: none; }
+
+// 改变输入框placeholder的颜色值
 ::-webkit-input-placeholder { /* WebKit browsers */
 color: #999; }
 :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
@@ -252,18 +263,19 @@ color: #999; }
 :-ms-input-placeholder { /* Internet Explorer 10+ */
 color: #999; }
 input:focus::-webkit-input-placeholder{ color:#999; }
+
+// android上去掉语音输入按钮
+input::-webkit-input-speech-button {display: none}
+
+// 阻止windows Phone的默认触摸事件
+/*说明：winphone下默认触摸事件事件使用e.preventDefault是无效的，可通过样式来禁用，如：*/
+html { -ms-touch-action:none; } //禁止winphone默认触摸事件
 ```
 
 
-- 禁止ios 长按时不触发系统的菜单，禁止ios&android长按时下载图片
-``` CSS
-a,img { -webkit-touch-callout: none }    //禁止长按链接与图片弹出菜单
-```
-
-
-- 禁止ios和android用户选中文字
-``` CSS
-html,body {-webkit-user-select:none; user-select: none; }
+- 取消input在ios下，输入的时候英文首字母的默认大写
+``` HTML
+<input autocapitalize="off" autocorrect="off" />
 ```
 
 
@@ -272,23 +284,6 @@ html,body {-webkit-user-select:none; user-select: none; }
 //IOS有拍照、录像、选取本地图片功能，部分Android只有选择本地图片功能。Winphone不支持
 <input type="file" accept="images/*" />
 <input type="file" accept="video/*" />
-```
-
-- 取消input在ios下，输入的时候英文首字母的默认大写
-``` HTML
-<input autocapitalize="off" autocorrect="off" />
-```
-
-- android上去掉语音输入按钮
-``` CSS
-input::-webkit-input-speech-button {display: none}
-```
-
-
-- 如何阻止windows Phone的默认触摸事件
-``` CSS
-/*说明：winphone下默认触摸事件事件使用e.preventDefault是无效的，可通过样式来禁用，如：*/
-html { -ms-touch-action:none; } //禁止winphone默认触摸事件
 ```
 
 
