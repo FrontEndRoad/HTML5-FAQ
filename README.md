@@ -28,7 +28,7 @@ if (/Android (\d+\.\d+)/.test(ua)){
 }
 ```
 
-- 空白页基本meta标签
+- H5空白页基本meta标签
 ```
 <!-- 设置缩放 -->
 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimal-ui" />
@@ -38,6 +38,28 @@ if (/Android (\d+\.\d+)/.test(ua)){
 <meta name="apple-mobile-web-app-status-bar-style" content="black" />
 <!-- IOS中禁用将数字识别为电话号码/忽略Android平台中对邮箱地址的识别 -->
 <meta name="format-detection"content="telephone=no, email=no" />
+```
+
+- PC端基础meta标签
+```
+<!-- 页面关键词-->
+<meta name="keywords" content="your tags" />
+<!-- 页面描述-->
+<meta name="description" content="150 words" />
+<!-- 搜索引擎索引方式：robotterms是一组使用逗号(,)分割的值，通常有如下几种取值：none，noindex，nofollow，all，index和follow。确保正确使用nofollow和noindex属性值。-->
+<meta name="robots" content="index,follow" />
+<!--
+    all：文件将被检索，且页面上的链接可以被查询；
+    none：文件将不被检索，且页面上的链接不可以被查询；
+    index：文件将被检索；
+    follow：页面上的链接可以被查询；
+    noindex：文件将不被检索；
+    nofollow：页面上的链接不可以被查询。
+ -->
+ 
+ <!-- 页面重定向和刷新：content内的数字代表时间（秒），既多少时间后刷新。如果加url,则会重定向到指定网页（搜索引擎能够自动检测，也很容易被引擎视作误导而受到惩罚）。-->
+ <meta http-equiv="refresh" content="0;url=" />
+ 
 ```
 
 - 其他meta标签
@@ -64,6 +86,11 @@ if (/Android (\d+\.\d+)/.test(ua)){
 <meta name="x5-page-mode" content="app">
 <!-- windows phone 点击无高光 -->
 <meta name="msapplication-tap-highlight" content="no">
+
+<meta name="author" content="author name" /> <!-- 定义网页作者 -->
+<meta name="google" content="index,follow" />
+<meta name="googlebot" content="index,follow" />
+<meta name="verify" content="index,follow" />
 ```
 
 
