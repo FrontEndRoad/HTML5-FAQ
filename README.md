@@ -62,6 +62,14 @@ if (/Android (\d+\.\d+)/.test(ua)){
  
 ```
 
+- 页面缓存设置
+```
+<!-- 清除缓存 -->
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="cache-control" content="no-cache">
+<meta http-equiv="expires" content="0">   
+```
+
 - 其他meta标签
 ```
 <!-- 启用360浏览器的极速模式(webkit) -->
