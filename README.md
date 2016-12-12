@@ -26,7 +26,16 @@ if (/Android (\d+\.\d+)/.test(ua)){
 } else {
 	document.write('<meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">');
 }
+
+//三、腾讯适配方案
+var autoScale = function(){
+    var ratio = 320/504,
+        
+}
 ```
+
+
+
 
 - H5空白页基本meta标签
 ```
