@@ -26,12 +26,6 @@ if (/Android (\d+\.\d+)/.test(ua)){
 } else {
 	document.write('<meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">');
 }
-
-//三、腾讯适配方案
-var autoScale = function(){
-    var ratio = 320/504,
-        
-}
 ```
 
 
@@ -573,11 +567,50 @@ function isWeixin(){
 ``` 
 
 
+- 腾讯方案
+``` javascript
+var autoScale = function(){
+    var ratio = 320/504,   //这是设计稿的宽高比（504是Iphone的高度去掉标题栏高度）
+        winW = document.getElement.clientWidth,
+        winH = document.getElement.clientHeight,
+        ratio2 = winW/winH,
+        scale;
+    if(ratio<ratio2){
+        scale = (winH/504).toString().substring(0, 6);
+    }else{
+        scale = (winW/320).toString().substring(0, 6);  
+    }
+    var cssText = '-webkit-transform: scale('+scale+');-webkit-transform-origin: top; opacity:1;'  
+    $('.wrap').attr('style', cssText);
+}
+setTimeout(function(){
+    if(document.documentElement.clientWidth/document.documentElement.clientHeight !== 320/504){
+        autoScale();
+    }else{
+        $('.page').css({'opacity': 1});
+    }
+}, 300)  //添加一定时长以确保宽高获取正确
+window.addEventListener('onorientationchange' in window?'orientationchange':'resize', autoScale, false){
+        detectOrientatioin();
+}   //切换横竖屏
+
+function detectOrientatioin(){
+    if(window.orientation==180 || window.orientation==0){
+        //竖屏
+    }
+    if(window.orientation==90 || window.orientation==-90){
+        //横屏
+    }
+}
+```
+
 
 ####常用的移动端框架
-- zepto.js
+zepto.js
 	- [官网](http://zeptojs.com/)
 	- [中文网](http://www.css88.com/doc/zeptojs_api/)
 	- [浏览器检测](https://github.com/madrobby/zepto/blob/master/src/detect.js)
 	- [tap事件](https://github.com/madrobby/zepto/blob/master/src/touch.js)
 	
+
+
